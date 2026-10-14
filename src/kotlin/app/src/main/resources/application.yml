@@ -1,0 +1,27 @@
+server:
+  port: 8087
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 3
+          max-interval: 10s
+          multiplier: 2
+
+app:
+  messaging:
+    rabbitmq:
+      letter:
+        exchange: "letter.exchange.direct"
+        queue: "letter.queue"
+        queue-routing-key: "letter.queue.routing.key"
+        dead-letter-queue: "letter.dead.letter.queue"
+        dead-letter-queue-routing-key: "letter.dead.letter.queue.routing.key"

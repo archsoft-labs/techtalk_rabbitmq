@@ -1,0 +1,19 @@
+version: "3.2"
+
+services:
+
+  rabbitmq:
+    image: "rabbitmq:3.9.12-management"
+    container_name: "rabbitmq"
+    hostname: "rabbitmq"
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ./config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.config
+    networks:
+        - rabbitmq_net
+
+networks:
+  rabbitmq_net:
+    driver: bridge
